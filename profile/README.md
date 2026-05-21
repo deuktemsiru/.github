@@ -115,8 +115,18 @@
   <img src="https://img.shields.io/badge/PostgreSQL 16-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
   <img src="https://img.shields.io/badge/Flyway-CC0200?style=flat-square&logo=flyway&logoColor=white" alt="Flyway"/>
   <img src="https://img.shields.io/badge/springdoc--openapi 3.0.3-85EA2D?style=flat-square&logo=openapiinitiative&logoColor=black" alt="OpenAPI"/>
+  <img src="https://img.shields.io/badge/Actuator-6DB33F?style=flat-square&logo=springboot&logoColor=white" alt="Actuator"/>
+  <img src="https://img.shields.io/badge/Micrometer-1F8DED?style=flat-square&logoColor=white" alt="Micrometer"/>
   <img src="https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white" alt="Prometheus"/>
   <img src="https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white" alt="Grafana"/>
+  <img src="https://img.shields.io/badge/Docker Compose-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker Compose"/>
+  <img src="https://img.shields.io/badge/JUnit 5-25A162?style=flat-square&logo=junit5&logoColor=white" alt="JUnit 5"/>
+  <img src="https://img.shields.io/badge/Testcontainers-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Testcontainers"/>
+  <img src="https://img.shields.io/badge/Jacoco-2E7D32?style=flat-square&logoColor=white" alt="Jacoco"/>
+  <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" alt="Postman"/>
+  <img src="https://img.shields.io/badge/Newman-FF6C37?style=flat-square&logo=postman&logoColor=white" alt="Newman"/>
+  <img src="https://img.shields.io/badge/k6-7D64FF?style=flat-square&logo=k6&logoColor=white" alt="k6"/>
+  <img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions"/>
 </p>
 
 ### Android
@@ -293,6 +303,9 @@ CLI 빌드:
 | 백엔드 주소 | `http://localhost:8080` |
 | 에뮬레이터 백엔드 주소 | `http://10.0.2.2:8080/` |
 | Swagger UI | `http://localhost:8080/swagger-ui/index.html` |
+| OpenAPI JSON | `http://localhost:8080/v3/api-docs` |
+| Postman Collection | `deuktemsiru_backend/docs/postman/deuktemsiru-core.postman_collection.json` |
+| Postman Environment | `deuktemsiru_backend/docs/postman/deuktemsiru-local.postman_environment.json` |
 | PostgreSQL | `jdbc:postgresql://localhost:5432/deuktemsiru` |
 | DB 사용자 / 비밀번호 | `deuktemsiru` / `deuktemsiru` |
 | Access Token 만료 | 30분 |
@@ -319,6 +332,42 @@ CLI 빌드:
 
 ## 도메인 참고
 
+**API 문서 / Postman**
+
+Swagger UI와 OpenAPI JSON은 백엔드 실행 후 아래 주소에서 확인합니다.
+
+```text
+http://localhost:8080/swagger-ui/index.html
+http://localhost:8080/v3/api-docs
+```
+
+Postman에서는 `deuktemsiru_backend/docs/postman`의 컬렉션과 환경 파일을 import합니다. 전체 API 컬렉션이 필요하면 Postman에서 `http://localhost:8080/v3/api-docs`를 import해 생성합니다.
+
+로컬 개발용 권장 플로우:
+
+```text
+Debug Login - Buyer
+List Products
+Add To Cart
+Create Order
+Debug Login - Seller
+Get Store Orders
+Confirm Order
+Verify Pickup Code
+```
+
+**테스트 / 검증**
+
+백엔드는 JUnit/Spring Test, Testcontainers PostgreSQL, Jacoco를 사용합니다.
+
+```bash
+cd deuktemsiru_backend
+./gradlew test
+./gradlew check
+```
+
+`check`는 테스트, Jacoco 리포트, 미완성 Stub 검사를 함께 실행합니다.
+
 **주문 상태 흐름**
 
 ```text
@@ -331,10 +380,4 @@ PENDING ──▶ PREPARING ──▶ READY ──▶ COMPLETED
 
 ```text
 BAKERY / CAFE / RESTAURANT / GROCERY / OTHER
-```
-
-**주요 API 문서**
-
-```text
-http://localhost:8080/swagger-ui/index.html
 ```
